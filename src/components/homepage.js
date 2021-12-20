@@ -29,9 +29,13 @@ const StyledTop = styled.header`
 display: flex;
 align-items: center;
 justify-content: space-around;
+position: fixed;
+top: 0;
 width: 100vw;
 height: 60px;
 background: #fafafa;
+border-bottom: 1px solid #CDC9C9;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     .logo{
         font-family: 'Roboto',sans-serif;
         font-size: 30px;
@@ -51,7 +55,8 @@ background: #fafafa;
 
 const Container = styled.div`
 width: 100vw;
-height: calc(100vh - 60px);
+height: 100vh;
+margin-top: 60px;
 background: #A2B5CD;
 display: flex;
 align-items: start;
@@ -63,6 +68,10 @@ width: 80vw;
 background: #fafafa;
 display: flex;
 justify-content: space-around;
+border: 1px gray solid;
+border-radius: 5px;
+margin-top: 50px;
+padding: 12px;
 `
 
 const ExamCard = styled.div`
