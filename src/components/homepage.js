@@ -4,17 +4,52 @@ import { useEffect, useState } from "react";
 import { getAllSubjects, getAllTeachers } from "../service/api";
 export default function HomePage(){
    const [subjects,setSubjects] = useState([]);
+   const [sortedSubject, setSortedSubjects] = useState([]);
    const [teachers,setTeachers] = useState([]);
+   const [menuSub,setMenuSub] = useState(false);
+   const [menuT,setMenuT] = useState(false);
     useEffect(()=> {
         getAllSubjects().then((res)=>{
             setSubjects(res.data);
+            sort();
         })
         getAllTeachers().then((res)=>{
             setTeachers(res.data);
         })
+        
     },[]); 
-    console.log(teachers);
-    console.log(subjects);
+
+    async function sort(){
+        const sorted = subjects.sort((a,b) => {return b.periodo - a.periodo})
+        setSortedSubjects(sorted);
+    }
+
+
+     function controlMenu(){
+        if(menuSub === true){
+            setMenuSub(false)
+        }
+        else if(menuT === true){
+            setMenuT(false);
+            setMenuSub(true);
+        }
+        else{
+            setMenuSub(true);
+        }   
+    }
+    function controlMenuTeacher(){
+        if(menuSub === true){
+            setMenuSub(false);
+            setMenuT(true);
+        }
+        else if(menuT === false && menuSub === false){
+            setMenuT(true);
+        }
+        else{
+            setMenuT(false);
+        }
+    }
+
     return(
         <>
         <StyledTop>
@@ -30,14 +65,32 @@ export default function HomePage(){
             <Menu>
                 <h1>Filtrar por </h1>
                 <div>
-                <StyledButton style={{marginRight:"20px"}}>Disciplinas</StyledButton>
-                <StyledButton>Professores</StyledButton>
+                <StyledButton style={{marginRight:"20px"}} onClick={controlMenu}>Disciplinas</StyledButton>
+                <StyledButton onClick={controlMenuTeacher}>Professores</StyledButton>
                 </div>
+            
             </Menu>
                 <div className="content">
-                    <SectionSubject>
-
+               
+                    <SectionSubject state={menuSub}>
+                        <div>
+                            {sortedSubject.map((sub)=>{
+                                return(
+                                <div className="card">
+                                    <h1>{sub.periodo}º Periodo</h1>
+                                    <h2 key={sub.Id}>{sub.Name}</h2>
+                                </div>
+                                )
+                            })}
+                        </div>
                     </SectionSubject>
+                    <SectionTeacher state={menuT}>
+                            <div>
+                                {teachers.map((teacher)=>{
+                                    return(<h1 key={teacher.Id}>{teacher.Name}</h1>)
+                                })}
+                            </div>
+                    </SectionTeacher>
                     {/* <ExamCard>
                         <h1>Cálculo Infinitesimal</h1>
                         <h2>2020 - 1º Semestre</h2>
@@ -78,8 +131,26 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     }
 
 `
-const SectionSubject = styled.section`
-display: flex;
+const SectionSubject = styled.div`
+    .card{
+        width: 100px;
+        height: 40px;
+        margin-bottom: 20px;
+        margin-top:10px;
+        background: #CDCDC1;
+        padding: 10px;
+        border-radius: 10px;
+        h1{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    }
+display: ${props => props.state ? 'flex' : 'none'}
+  
+`
+const SectionTeacher = styled.div`
+display: ${props => props.state ? 'flex' : 'none'}
 `
 
 const Container = styled.div`
