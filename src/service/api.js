@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const URL = 'https://repoprovas-api-pedro.herokuapp.com/';
+const URL = 'https://repoprovas-api-pedro.herokuapp.com';
 
 
 
