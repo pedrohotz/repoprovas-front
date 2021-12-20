@@ -3,6 +3,7 @@ import { AiOutlineBook,AiFillPlusCircle } from 'react-icons/ai';
 import { useState,useEffect } from "react";
 import { getAllSubjects, getProf_DiscId, getTeacherBySubject, postExam } from "../service/api";
 import Swal from 'sweetalert2';
+import { NavLink } from "react-router-dom";
 export default function SendExam(){
     const [subjects,setSubjects] = useState([]);
     const [subject, setSubject] = useState('');
@@ -84,8 +85,8 @@ export default function SendExam(){
         <StyledTop>
         <h1 className="logo">RepoProvas</h1>
         <div>
-           <AiFillPlusCircle style={{fontSize:"30px",marginRight:"10px"}}/><h1>Enviar uma Prova</h1>
-           <AiOutlineBook style={{fontSize:"30px",marginRight:"10px" }}/><h1>Vizualizar provas</h1>
+           <AiFillPlusCircle style={{fontSize:"30px",marginRight:"10px"}}/><NavLink to="/send" style={{textDecoration:"none",color:"inherit"}}><h1>Enviar uma Prova</h1></NavLink>
+           <AiOutlineBook style={{fontSize:"30px",marginRight:"10px" }}/><NavLink to="/" style={{textDecoration:"none",color:"inherit"}}><h1>Vizualizar provas</h1></NavLink>
         </div>
         </StyledTop>
         <Container>

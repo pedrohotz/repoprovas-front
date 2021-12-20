@@ -55,8 +55,8 @@ export default function HomePage(){
         <StyledTop>
             <h1 className="logo">RepoProvas</h1>
             <div>
-               <AiFillPlusCircle style={{fontSize:"30px",marginRight:"10px"}}/><h1>Enviar uma Prova</h1>
-               <AiOutlineBook style={{fontSize:"30px",marginRight:"10px" }}/><h1>Vizualizar provas</h1>
+            <AiFillPlusCircle style={{fontSize:"30px",marginRight:"10px"}}/><Link to="/send" style={{textDecoration:"none",color:"inherit"}}><h1>Enviar uma Prova</h1></Link>
+            <AiOutlineBook style={{fontSize:"30px",marginRight:"10px" }}/><Link to="/" style={{textDecoration:"none",color:"inherit"}}><h1>Vizualizar provas</h1></Link>
             </div>
         </StyledTop>
         <Container>

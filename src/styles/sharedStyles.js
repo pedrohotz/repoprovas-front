@@ -24,6 +24,7 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
             margin-right: 20px;
             font-family: 'Roboto',sans-serif;
             font-size: 20px;
+            cursor: pointer;
         }
     }
 
