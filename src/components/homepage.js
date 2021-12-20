@@ -1,7 +1,20 @@
 import styled from "styled-components";
 import { AiOutlineBook,AiFillPlusCircle } from 'react-icons/ai';
+import { useEffect, useState } from "react";
+import { getAllSubjects, getAllTeachers } from "../service/api";
 export default function HomePage(){
-
+   const [subjects,setSubjects] = useState([]);
+   const [teachers,setTeachers] = useState([]);
+    useEffect(()=> {
+        getAllSubjects().then((res)=>{
+            setSubjects(res.data);
+        })
+        getAllTeachers().then((res)=>{
+            setTeachers(res.data);
+        })
+    },[]); 
+    console.log(teachers);
+    console.log(subjects);
     return(
         <>
         <StyledTop>
@@ -12,12 +25,25 @@ export default function HomePage(){
             </div>
         </StyledTop>
         <Container>
+          
             <InsideContainer>
-                <ExamCard>
-                    <h1>Cálculo Infinitesimal</h1>
-                    <h2>2020 - 1º Semestre</h2>
-                    <h2>Marco Cabral</h2>
-                </ExamCard>
+            <Menu>
+                <h1>Filtrar por </h1>
+                <div>
+                <StyledButton style={{marginRight:"20px"}}>Disciplinas</StyledButton>
+                <StyledButton>Professores</StyledButton>
+                </div>
+            </Menu>
+                <div className="content">
+                    <SectionSubject>
+
+                    </SectionSubject>
+                    {/* <ExamCard>
+                        <h1>Cálculo Infinitesimal</h1>
+                        <h2>2020 - 1º Semestre</h2>
+                        <h2>Marco Cabral</h2>
+                    </ExamCard> */}
+                </div>
 
             </InsideContainer>
         </Container>
@@ -52,6 +78,9 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     }
 
 `
+const SectionSubject = styled.section`
+display: flex;
+`
 
 const Container = styled.div`
 width: 100vw;
@@ -67,11 +96,36 @@ const InsideContainer = styled.div`
 width: 80vw;
 background: #fafafa;
 display: flex;
+flex-direction: column;
+align-items: center;
 justify-content: space-around;
 border: 1px gray solid;
 border-radius: 5px;
 margin-top: 50px;
 padding: 12px;
+`
+
+const Menu = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    h1{
+        font-size: 30px;
+        font-family: 'Roboto',sans-serif;
+        margin-bottom: 20px;
+    }
+`
+
+const StyledButton = styled.button`
+width: 180px;
+height:  60px;
+font-family: 'Roboto',sans-serif;
+font-size: 25px;
+border: none;
+background: #A2B5CD;
+border-radius: 10px;
+cursor: pointer;
 `
 
 const ExamCard = styled.div`
