@@ -14,7 +14,6 @@ export default function Exams(){
             setExams(res.data);
         })
     },[])
-    console.log(exams);
     return(
         <>
         <StyledTop>
@@ -26,16 +25,19 @@ export default function Exams(){
         </StyledTop>
         <Container>
         <InsideContainer>
-            <h1 className="title">Provas de {filter}</h1>
+            <h1 className="title">Provas de <strong>{filter}</strong></h1>
             <div className="content-exam">
             {exams.length ?
-            exams.map((exam)=>{
+            exams.map((exam,index)=>{
                 return (
-                    <ExamCard>
+                    <a href={exam.Link} target='_blank' style={{textDecoration:"none",color:"inherit"}}>
+                    <ExamCard key={index}>
                         <h1>{exam.Name}</h1>
                         <h2>{exam.categoria}</h2>
+                        <h2>{exam.disciplina}</h2>
                         <h2>{exam.professor}</h2>
                     </ExamCard>
+                    </a>
                 )
             }) : <NotFound/>}
            </div> 

@@ -21,8 +21,25 @@ function getAllSubjects(){
     return promisse
 }
 
+function getTeacherBySubject(disciplina){
+    const promisse = axios.get(`${URL}/professores/${disciplina}`)
+    return promisse
+}
+
+function getProf_DiscId(professor,disciplina){
+    const promisse = axios.get(`${URL}/professores/${professor}/${disciplina}`)
+    return promisse;
+}
+
+function postExam(body){
+    const promisse = axios.post(`${URL}/prova`,body);
+    return promisse;
+}
 export {
     getExamByFilter,
     getAllTeachers,
-    getAllSubjects
+    getAllSubjects,
+    getTeacherBySubject,
+    getProf_DiscId,
+    postExam,
 }

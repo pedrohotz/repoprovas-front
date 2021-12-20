@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 
-
 const StyledTop = styled.header`
 display: flex;
 align-items: center;
@@ -45,9 +44,16 @@ const SectionSubject = styled.div`
         }
     }
 display: ${props => props.state ? 'flex' : 'none'}
-  
 `
 const SectionTeacher = styled.div`
+.card{
+    margin-top:10px;
+    font-size: 20px;
+    text-align: center;
+    background:#CDCDC1;
+    padding: 10px;
+    border-radius: 10px;
+}
 display: ${props => props.state ? 'flex' : 'none'}
 `
 
@@ -75,7 +81,7 @@ padding: 12px;
     .content-exam{
         display: flex;
         width: 100%;
-        justify-content: space-around;
+        justify-content: center;
     }
     .title{
         font-size: 30px;
@@ -124,6 +130,7 @@ const ExamCard = styled.div`
  border-radius: 5px;
  transition: 0.5s;
  box-shadow: 2px 2px 2px #696969;
+ margin-left: 20px;
  :hover{
                 transform: scale(1.1);
             }
@@ -135,6 +142,42 @@ const ExamCard = styled.div`
 
  }
 `
+const InputBox = styled.div`
+width:  100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+ h1{
+     font-size: 20px;
+     margin-bottom: 10px;
+     margin-top:10px;
+ }
+ select{
+     width: 320px;
+     font-size: 20px;
+     height: 50px;
+     background:#B9D3EE;
+     border: 0px;
+     outline: 0px;
+ }
+ form{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+`
+const StyledInput = styled.input`
+width: 300px;
+height: 40px;
+border: none;
+background: #B9D3EE;
+border-radius: 10px;
+padding: 10px;
+font-size: 20px;
+`
+
+
 export {
     StyledTop,
     SectionSubject,
@@ -144,4 +187,6 @@ export {
     InsideContainer,
     StyledButton,
     ExamCard,
+    InputBox,
+    StyledInput
 }

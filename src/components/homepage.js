@@ -1,7 +1,8 @@
-import { StyledTop,SectionSubject,SectionTeacher,Menu,Container,InsideContainer,StyledButton,ExamCard} from '../styles/sharedStyles';
+import { StyledTop,SectionSubject,SectionTeacher,Menu,Container,InsideContainer,StyledButton,ExamCard, StyledLink} from '../styles/sharedStyles';
 import { AiOutlineBook,AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from "react";
 import { getAllSubjects, getAllTeachers } from "../service/api";
+import { Link } from 'react-router-dom';
 export default function HomePage(){
    const [subjects,setSubjects] = useState([]);
    const [sortedSubject, setSortedSubjects] = useState([]);
@@ -75,10 +76,12 @@ export default function HomePage(){
                         <div>
                             {sortedSubject.map((sub)=>{
                                 return(
-                                <div className="card">
+                                <Link to={`${sub.Name}`}  style={{textDecoration:"none",color:"inherit"}}>
+                                <div className="card" >
                                     <h1>{sub.periodo}º Periodo</h1>
                                     <h2 key={sub.Id}>{sub.Name}</h2>
                                 </div>
+                                </Link>
                                 )
                             })}
                         </div>
@@ -86,7 +89,13 @@ export default function HomePage(){
                     <SectionTeacher state={menuT}>
                             <div>
                                 {teachers.map((teacher)=>{
-                                    return(<h1 key={teacher.Id}>{teacher.Name}</h1>)
+                                    return(
+                                    <Link to={`${teacher.Name}`}  style={{textDecoration:"none",color:"inherit"}}>
+                                    <div className='card'>
+                                        <h1 key={teacher.Id}>{teacher.Name}</h1>
+                                    </div>
+                                    </Link>
+                                    )
                                 })}
                             </div>
                     </SectionTeacher>
